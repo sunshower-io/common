@@ -1,0 +1,15 @@
+dependencies {
+    compile project(":test:core")
+    compile project(":test:api:remote")
+    compile project(":test:api:core-api")
+    compile project(":test:providers:spring")
+
+    compile('org.glassfish.jersey.core:jersey-server')
+    compile('org.glassfish.jersey.ext:jersey-proxy-client')
+    compile('org.eclipse.persistence:org.eclipse.persistence.moxy')
+
+
+    testCompile('org.glassfish.jersey.core:jersey-common')
+    testCompile 'org.springframework.boot:spring-boot-starter-jersey'
+
+}

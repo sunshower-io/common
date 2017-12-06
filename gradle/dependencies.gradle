@@ -1,0 +1,41 @@
+apply plugin: 'io.spring.dependency-management'
+
+def repos = [
+        'http://repo.spring.io/snapshot',
+        "https://repo.spring.io/libs-milestone",
+]
+
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    
+    maven {
+        credentials {
+            username mavenRepositoryUsername
+            password mavenRepositoryPassword
+        }
+
+        url mavenRepositoryUrl
+    }
+
+    repos.each { repo ->
+        maven { url "$repo" }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.sunshower.common:bom-imported:${version}-SNAPSHOT"
+    }
+}
+
+allprojects {
+    apply plugin: 'nebula.optional-base'
+
+    dependencies {
+    }
+}
+
+

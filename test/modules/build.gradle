@@ -1,0 +1,4 @@
+
+subprojects {
+    group='io.sunshower.test.modules'
+}

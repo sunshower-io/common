@@ -1,0 +1,10 @@
+
+subprojects {
+    group='io.sunshower.test.api'
+
+    dependencies {
+        compile 'junit:junit'
+        compile 'javax.inject:javax.inject'
+    }
+}
+

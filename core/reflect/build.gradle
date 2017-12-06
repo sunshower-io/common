@@ -1,0 +1,14 @@
+
+
+dependencies {
+    compile project(':core:lang')
+    compile project(':core:lambda')
+
+
+
+    compile 'net.bytebuddy:byte-buddy', optional
+
+
+
+    testCompile 'junit:junit'
+}

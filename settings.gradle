@@ -1,0 +1,17 @@
+include(
+        'annotations',
+        'core',
+        'core:lambda',
+        'core:lang',
+        'core:reflect',
+        'annotations:305',
+        'test',
+        'test:api',
+        'test:api:core-api',
+        'test:api:remote',
+        'test:core',
+        'test:modules',
+        'test:providers',
+        'test:modules:jaxrs',
+        'test:providers:spring'
+)

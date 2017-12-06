@@ -1,0 +1,79 @@
+
+buildscript {
+    apply from: 'gradle/buildscript.gradle', to: buildscript
+}
+
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+}
+
+private boolean checkProperty(String propertyName) {
+    project.hasProperty("versionQualifier") && !project.property("versionQualifier").trim().isEmpty()
+}
+
+subprojects {
+
+
+    subprojects {
+        apply plugin: 'java'
+        apply from: "$rootDir/gradle/dependencies.gradle"
+        apply from: "$rootDir/gradle/jacoco.gradle"
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '2.12'
+    }
+
+    task sourceJar(type:Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+
+    if (checkProperty("versionQualifier")) {
+        project.version = "${project.version}-${project.versionQualifier}"
+    } else {
+        project.version = "${project.version}-RELEASE"
+    }
+
+    repositories {
+        maven {
+            url mavenRepositoryUrl
+
+            credentials {
+                username mavenRepositoryUsername
+                password mavenRepositoryPassword
+            }
+        }
+    }
+
+
+    publishing {
+        repositories {
+            maven {
+                url mavenRepositoryUrl
+
+                credentials {
+                    username mavenRepositoryUsername
+                    password mavenRepositoryPassword
+                }
+            }
+        }
+
+        publications {
+            maven(MavenPublication) {
+                from components.java
+
+                artifact sourceJar {
+                    classifier "sources"
+                }
+            }
+        }
+    }
+}
+
+
+
+

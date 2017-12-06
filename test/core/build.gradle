@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":test:api:core-api")
+    compile project(":core:lambda")
+    compile project(":core:reflect")
+    compile project(":annotations:305")
+}

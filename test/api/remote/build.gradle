@@ -1,0 +1,6 @@
+
+
+dependencies {
+    compile project(':test:api:core-api')
+    compile 'javax.ws.rs:javax.ws.rs-api'
+}

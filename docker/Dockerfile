@@ -13,7 +13,7 @@ ENV MVN_REPO_USERNAME ""
 ENV MVN_REPO_PASSWORD "" 
 
 ENTRYPOINT mvn clean install deploy -f bom/pom.xml --settings=/root/.m2/settings.xml && \
-git pull && gradle clean build publish --stacktrace \
+gradle clean build publish --stacktrace \
 -PmavenRepositoryUrl=$MAVEN_REPOSITORY_URL \
 -PmavenRepositoryUsername=$MVN_REPO_USERNAME \
 -PmavenRepositoryPassword=$MVN_REPO_PASSWORD \
